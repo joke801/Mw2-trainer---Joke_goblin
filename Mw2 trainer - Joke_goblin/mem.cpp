@@ -38,6 +38,7 @@ bool mem::CreateHandle() {
 	return true;
 }
 
+
 mem::~mem() {
 	CloseHandle(this->hGameHandle);
 }

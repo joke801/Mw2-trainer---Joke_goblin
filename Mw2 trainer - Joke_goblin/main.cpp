@@ -77,7 +77,7 @@ int main() {
 	}
 
 
-	//SETTING IT BACK
+	//SETTING IT BACK TO ORIGINAL
 	Mem.WriteProcess<unsigned long>(0x004885A5, 3897952628); //NOPPING
 	Mem.WriteProcess<BYTE>(0x4B9FCB, 117); // PATCHING
 	Mem.WriteProcess<BYTE>(0x004879FC, (BYTE)15);//PATCHING
