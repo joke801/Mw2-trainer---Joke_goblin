@@ -41,7 +41,7 @@ int main() {
 			if (GetAsyncKeyState(VK_NUMPAD1) & 0x8000) { // CHANGE THE KEYS TO WHAT YOU LIKE | https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
 				values.bRedBoxes = !values.bRedBoxes;
 				Mem.WriteProcess<unsigned long>(0x004885A5, values.bRedBoxes ? 3897987216 : 3897952628); //NOPPING
-				Mem.WriteProcess<BYTE>(0x004B751E, (long)2268696720); // PATCHING COLD BLOODED should be xd
+				Mem.WriteProcess<long>(0x004B751E, (long)2268696720); // PATCHING COLD BLOODED should be xd
 				ulOnePressTimer = clock();
 			}
 			else if (GetAsyncKeyState(VK_NUMPAD2) & 0x8000) {
