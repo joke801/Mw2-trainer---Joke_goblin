@@ -29,24 +29,32 @@ int main() {
 	//TIMER TO SEPERATE TOGGLES
 	unsigned long ulOnePressTimer = clock();
 
+//	Mem.WriteProcess<long>(0x004B751E, (long)2268696720); // PATCHING COLD BLOODED should be xd
+
+
+	//HELPS FIND LOBBIES
+	Mem.WriteProcess<int>(0x00BC3864, 500, 0xC);
+	Mem.WriteProcess<int>(0x06644390, 300, 0xC);
+	Mem.WriteProcess<int>(0x1B8C7A9 + 0x80, 0x0000);
+
+
 
 	//LOOP THAT CHANGES VALUES INGAME
 	while (!GetAsyncKeyState(VK_ADD)) {
 
 		//FOV RESETS ON DEATH SO JUST KEEP WRITING IT
-		Mem.WriteProcess<float>(0x63932AC, values.fFov);
+		Mem.WriteProcess<float>(0x00AAC278, values.fFov, 0xC); // 0x6392ec40 + 0xC Without the Offset
 
 		//CHECKING FOR KEY PRESSES
 		if (clock() - ulOnePressTimer > 250) {
 			if (GetAsyncKeyState(VK_NUMPAD1) & 0x8000) { // CHANGE THE KEYS TO WHAT YOU LIKE | https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
 				values.bRedBoxes = !values.bRedBoxes;
 				Mem.WriteProcess<unsigned long>(0x004885A5, values.bRedBoxes ? 3897987216 : 3897952628); //NOPPING
-				Mem.WriteProcess<long>(0x004B751E, (long)2268696720); // PATCHING COLD BLOODED should be xd
 				ulOnePressTimer = clock();
 			}
 			else if (GetAsyncKeyState(VK_NUMPAD2) & 0x8000) {
 				values.bNoRecoil = !values.bNoRecoil;
-				Mem.WriteProcess<BYTE>(0x4B9FCB, values.bRedBoxes ? 116 : 117); // PATCHING
+				//Mem.WriteProcess<BYTE>(0x004B9FCB, values.bNoRecoil ? 117 : 116); // PATCHING //CRASHES WILL FIx iN THE FUTURE
 				ulOnePressTimer = clock();
 			}
 			else if (GetAsyncKeyState(VK_NUMPAD3) & 0x8000) {

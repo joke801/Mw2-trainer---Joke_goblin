@@ -30,7 +30,7 @@ bool mem::SetProcessID(const char* sProcessName) {
 bool mem::CreateHandle() {
 	this->hGameHandle = INVALID_HANDLE_VALUE;
 
-	this->hGameHandle = OpenProcess(PROCESS_VM_WRITE | PROCESS_VM_OPERATION, NULL, this->ulProcId);
+	this->hGameHandle = OpenProcess(PROCESS_VM_WRITE | PROCESS_VM_READ |PROCESS_VM_OPERATION, NULL, this->ulProcId);
 
 	if (this->hGameHandle == INVALID_HANDLE_VALUE)
 		return false;
